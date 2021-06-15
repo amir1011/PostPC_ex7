@@ -9,10 +9,10 @@ enum class Status{
     Done
 }
 
-class SandwichOrder(_name: String, _pickles: Int, _tahini: Boolean, _hummus: Boolean,
+class SandwichOrder(_name: String?, _pickles: Int, _tahini: Boolean, _hummus: Boolean,
                     _comment: String, _id: String?) {
     private val id: String = _id ?: UUID.randomUUID().toString()
-    private val name: String = _name
+    private var name: String? = _name
     var pickles: Int = _pickles
     var tahini: Boolean = _tahini
     var hummus: Boolean = _hummus
@@ -25,7 +25,7 @@ class SandwichOrder(_name: String, _pickles: Int, _tahini: Boolean, _hummus: Boo
     fun getSandwichHummus(): Boolean {
         return hummus
     }
-    fun getSandwichName(): String {
+    fun getSandwichName(): String? {
         return name
     }
     fun getSandwichPickles(): Int {
@@ -56,6 +56,9 @@ class SandwichOrder(_name: String, _pickles: Int, _tahini: Boolean, _hummus: Boo
     }
     fun setSandwichStatus(_status: Status){
         status = _status
+    }
+    fun setSandwichName(_name: String){
+        name = _name
     }
 
 }

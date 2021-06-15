@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderIsReadyActivity">
+    <TextView
+        android:id="@+id/orderSInProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your order is ready! Rachel is in campus with your sandwich!"
+        android:textSize="35sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:textStyle="italic|bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp" />
+
+    <Button
+        android:id="@+id/gotIt"
+        android:layout_width="453dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:text="Got it"
+        android:textSize="35sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/orderSInProgress" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/burgerGif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="105dp"
+        android:src="@drawable/giphy"
+        app:layout_constraintBottom_toTopOf="" />
+</androidx.constraintlayout.widget.ConstraintLayout>

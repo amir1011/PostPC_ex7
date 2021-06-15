@@ -33,7 +33,7 @@ class OrdersHolder {
                   tahini: Boolean?, hummus: Boolean?){
         val orderToChange = orders[orderId]
         deleteOrder(orderId)
-        makeNewOrder(orderToChange!!.getSandwichName(),
+        makeNewOrder(orderToChange!!.getSandwichName()!!,
             pickles ?: orderToChange.getSandwichPickles(),
             tahini ?: orderToChange.getSandwichTahini(),
             hummus ?: orderToChange.getSandwichHummus(),

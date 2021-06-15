@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <Button
+        android:id="@+id/saveOrder"
+        android:layout_width="253dp"
+        android:layout_height="108dp"
+        android:text="@string/save_the_order"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/integer_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="16dp"
+        android:text="0"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.792" />
+
+    <Button
+        android:id="@+id/increase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
+
+    <Button
+        android:id="@+id/decrease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.77" />
+
+    <EditText
+        android:id="@+id/pickles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638"
+        tools:background="#eee"
+        tools:text="Number Of Pickles" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.202"
+        tools:background="#eee"
+        tools:text="Name" />
+
+    <CheckBox
+        android:id="@+id/hummusCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.325" />
+
+    <EditText
+        android:id="@+id/hummus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@id/hummusCheckBox"
+        app:layout_constraintLeft_toRightOf="@+id/hummusCheckBox"
+        app:layout_constraintTop_toTopOf="@id/hummusCheckBox"
+        tools:background="#eee"
+        tools:text="With Hummus" />
+
+    <CheckBox
+        android:id="@+id/tahiniCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.487" />
+
+    <TextView
+        android:id="@+id/orderStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="16dp"
+        android:text="Order Status"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="pa"
+        app:layout_constraintBottom_toTopOf="@id/placeNewOrder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+         />
+
+    <Button
+        android:id="@+id/placeNewOrder"
+        android:layout_width="253dp"
+        android:layout_height="128dp"
+        android:text="@string/place_new_order"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/deleteOrder"
+        android:layout_width="253dp"
+        android:layout_height="158dp"
+        android:text="@string/delete_this_order"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.795" />
+
+    <EditText
+        android:id="@+id/tahini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="12dp"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@id/tahiniCheckBox"
+        app:layout_constraintLeft_toRightOf="@+id/tahiniCheckBox"
+        app:layout_constraintTop_toTopOf="@id/tahiniCheckBox"
+        app:layout_constraintVertical_bias="1.0"
+        tools:background="#eee"
+        tools:text="With Tahini" />
+
+    <EditText
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Add comment"
+        android:inputType="textMultiLine"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.934"
+        tools:background="#eee"
+        tools:text="" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
