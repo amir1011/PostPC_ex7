@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.77" />
 
-    <EditText
+    <TextView
         android:id="@+id/pickles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,18 +77,18 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textSize="45sp"
-
+        android:ellipsize="end"
+        android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.202"
-        tools:background="#eee"
-        tools:text="Name" />
+        android:text="@string/name" />
 
     <CheckBox
         android:id="@+id/hummusCheckBox"
@@ -101,7 +101,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.325" />
 
-    <EditText
+    <TextView
         android:id="@+id/hummus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
         app:layout_constraintLeft_toRightOf="@+id/hummusCheckBox"
         app:layout_constraintTop_toTopOf="@id/hummusCheckBox"
         tools:background="#eee"
-        tools:text="With Hummus" />
+        android:text="With Hummus" />
 
     <CheckBox
         android:id="@+id/tahiniCheckBox"
@@ -135,7 +135,7 @@
         android:text="Order Status"
         android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="pa"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/placeNewOrder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +165,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.795" />
 
-    <EditText
+    <TextView
         android:id="@+id/tahini"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -177,25 +177,25 @@
         app:layout_constraintTop_toTopOf="@id/tahiniCheckBox"
         app:layout_constraintVertical_bias="1.0"
         tools:background="#eee"
-        tools:text="With Tahini" />
+        android:text="With Tahini" />
 
     <EditText
         android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="52dp"
         android:hint="Add comment"
         android:inputType="textMultiLine"
+        android:maxLines="3"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934"
+        app:layout_constraintTop_toBottomOf="@id/integer_number"
         tools:background="#eee"
         tools:text="" />
 

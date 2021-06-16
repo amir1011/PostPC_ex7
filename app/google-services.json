@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "831846291919",
+    "project_id": "postpc-ex7-1e3a6",
+    "storage_bucket": "postpc-ex7-1e3a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831846291919:android:3a862df6ac5eb250bd1aba",
+        "android_client_info": {
+          "package_name": "huji.postpc2021.amir1011.ex7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831846291919-21sv96tc2gk12tg8stc9b38b0monpj53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABxQL67YOHmEfqLsTx_ss-87jLq1ZLF78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831846291919-21sv96tc2gk12tg8stc9b38b0monpj53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

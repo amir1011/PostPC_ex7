@@ -1,15 +1,16 @@
 package huji.postpc2021.amir1011.ex7
 
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
 class NewOrderActivity: AppCompatActivity(){
+
+    private val currHolder = OrderApplication.getInstance()!!.getHolder()
 
     private var currOrder: SandwichOrder? = null
     private var nameText : EditText? = null
@@ -30,6 +31,15 @@ class NewOrderActivity: AppCompatActivity(){
         }
     }
 
+//    private fun fromItemToString(order: TodoItem): String{
+//        val boolInt = if(order.taskIsDone) 1 else 0
+//        val text = order.taskText
+//        val creationDate = order.creationDate
+//        val modData = order.lastModified.toString()
+//        val itemId: String = order.idString
+//        return "$boolInt#$text#$creationDate#$modData#$itemId"
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_activity_order)
@@ -42,10 +52,12 @@ class NewOrderActivity: AppCompatActivity(){
         subtractPickle = findViewById(R.id.decrease)
         pickleCounter = findViewById(R.id.integer_number)
         hummusCheck = findViewById(R.id.hummusCheckBox)
-        val hummus = findViewById<EditText>(R.id.hummus)
+        val hummus = findViewById<TextView>(R.id.hummus)
         tahiniCheck = findViewById(R.id.tahiniCheckBox)
-        val tahini = findViewById<EditText>(R.id.tahini)
-        val pickles = findViewById<EditText>(R.id.pickles)
+        val tahini = findViewById<TextView>(R.id.tahini)
+        val pickles = findViewById<TextView>(R.id.pickles)
+        val delete = findViewById<Button>(R.id.deleteOrder)
+        val status = findViewById<TextView>(R.id.orderStatus)
         comment = findViewById(R.id.comment)
         placeOrder = findViewById(R.id.placeNewOrder)
         saveOrder = findViewById(R.id.saveOrder)
@@ -63,6 +75,8 @@ class NewOrderActivity: AppCompatActivity(){
         hummus.visibility = View.GONE
         tahini.visibility = View.GONE
         pickles.visibility = View.GONE
+        delete.visibility = View.GONE
+        status.visibility = View.GONE
 
         /* define on click listeners */
         addPickle!!.setOnClickListener{
@@ -95,8 +109,11 @@ class NewOrderActivity: AppCompatActivity(){
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-//                if(currOrder!!.getSandwichName() == null)
+//                if(currOrder!!.getSandwichName() == null) {
+//                    if(nameText!!.text.toString() == "") nameText!!.setText("Anonymous")
                     currOrder!!.setSandwichName(nameText!!.text.toString())
+//                    currHolder!!.putNameSp(nameText!!.text.toString())
+//                }
 //                else
 //                    nameText!!.setText(currOrder!!.getSandwichName())
             }
@@ -112,10 +129,19 @@ class NewOrderActivity: AppCompatActivity(){
 
         saveOrder!!.setOnClickListener{
             //todo go to another activity and update firebase
+            /*val editor: SharedPreferences.Editor = sp.edit()
+            editor.putString("id", *//*fromItemToString(currOrder)*//*currOrder!!.getSandwichId())
+            editor.apply()*/
+//            if(OrderApplication.getInstance()!!.getHolder()!!.getCurrOrderId() == null)
+            currHolder!!.putIdSp(currOrder!!.getSandwichId())
+            currHolder.setCurrOrder(currOrder!!)
+            currHolder.putNewOrderFirebase()
+            startActivity(Intent(this, EditOrderActivity::class.java))
+            finish()
         }
 
         placeOrder!!.setOnClickListener {
-            currOrder = SandwichOrder(null,
+            currOrder = SandwichOrder(/*currHolder!!.getCurrOrderName()*/ null,
                                         pickleCounter!!.text.toString().toInt(),
                                         tahiniCheck!!.isChecked,
                                         hummusCheck!!.isChecked,

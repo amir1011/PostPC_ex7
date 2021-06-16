@@ -7,9 +7,11 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
-class EditOrderActivity(order: SandwichOrder): AppCompatActivity(){
+class EditOrderActivity: AppCompatActivity(){
 
-    private var currOrder: SandwichOrder = order
+    private val currHolder: OrdersHolder = OrderApplication.getInstance()!!.getHolder()!!
+    private var currOrder: SandwichOrder = currHolder.getCurrOrder()!!
+    private var nameText : EditText? = null
     private var comment : EditText? = null
     private var addPickle : Button? = null
     private var subtractPickle : Button? = null
@@ -18,9 +20,6 @@ class EditOrderActivity(order: SandwichOrder): AppCompatActivity(){
     private var pickleCounter : TextView? = null
     private var hummusCheck : CheckBox? = null
     private var tahiniCheck : CheckBox? = null
-    private var deleteOrder : Button? = null
-    private var status : TextView? = null
-    private var nameText : EditText? = null
 
     private fun getNumPickles(num: Int): Int{
         return when {
@@ -36,26 +35,25 @@ class EditOrderActivity(order: SandwichOrder): AppCompatActivity(){
 
         /* find all UI elements */
 //        val orderButton = findViewById<Button>(R.id.placeNewOrder)
-        deleteOrder = findViewById(R.id.deleteOrder)
+        nameText = findViewById(R.id.name)
         addPickle = findViewById(R.id.increase)
         subtractPickle = findViewById(R.id.decrease)
         subtractPickle = findViewById(R.id.decrease)
         pickleCounter = findViewById(R.id.integer_number)
         hummusCheck = findViewById(R.id.hummusCheckBox)
-        val hummus = findViewById<EditText>(R.id.hummus)
+        val hummus = findViewById<TextView>(R.id.hummus)
         tahiniCheck = findViewById(R.id.tahiniCheckBox)
-        val tahini = findViewById<EditText>(R.id.tahini)
+        val tahini = findViewById<TextView>(R.id.tahini)
+        val pickles = findViewById<TextView>(R.id.pickles)
+        val delete = findViewById<Button>(R.id.deleteOrder)
+        val status = findViewById<TextView>(R.id.orderStatus)
         comment = findViewById(R.id.comment)
-        val pickles = findViewById<EditText>(R.id.pickles)
         editOrder = findViewById(R.id.placeNewOrder)
         updateOrder = findViewById(R.id.saveOrder)
-        status = findViewById(R.id.orderStatus)
-        nameText = findViewById(R.id.name)
 
         status!!.text = "Status of the order: Waiting"
         updateOrder!!.text = "Update this order"
         editOrder!!.text = "Edit your order"
-
 
         addPickle!!.visibility = View.GONE
         subtractPickle!!.visibility = View.GONE
@@ -107,13 +105,32 @@ class EditOrderActivity(order: SandwichOrder): AppCompatActivity(){
 
         updateOrder!!.setOnClickListener{
             //todo go to another activity and update firebase
+            currHolder.setCurrOrder(currOrder)
+            currHolder.updateOrder(currOrder.getSandwichId())
+
+            editOrder!!.visibility = View.VISIBLE
+            delete!!.visibility = View.VISIBLE
+            status.visibility = View.VISIBLE
+
+            addPickle!!.visibility = View.GONE
+            subtractPickle!!.visibility = View.GONE
+            subtractPickle!!.visibility = View.GONE
+            pickleCounter!!.visibility = View.GONE
+            pickles.visibility = View.GONE
+            hummus.visibility = View.GONE
+            tahini.visibility = View.GONE
+            hummusCheck!!.visibility = View.GONE
+            tahiniCheck!!.visibility = View.GONE
+            comment!!.visibility = View.GONE
+            updateOrder!!.visibility = View.GONE
+            nameText!!.visibility = View.GONE
         }
 
         editOrder!!.setOnClickListener {
 
             editOrder!!.visibility = View.GONE
-            deleteOrder!!.visibility = View.GONE
-            status!!.visibility = View.GONE
+            delete!!.visibility = View.GONE
+            status.visibility = View.GONE
             addPickle!!.visibility = View.VISIBLE
             subtractPickle!!.visibility = View.VISIBLE
             subtractPickle!!.visibility = View.VISIBLE
@@ -128,7 +145,7 @@ class EditOrderActivity(order: SandwichOrder): AppCompatActivity(){
             nameText!!.visibility = View.VISIBLE
 
             nameText!!.setText(currOrder.getSandwichName())
-            pickleCounter!!.setText(currOrder.getSandwichPickles())
+            pickleCounter!!.text = currOrder.getSandwichPickles().toString()
             comment!!.setText(currOrder.getSandwichComment())
             nameText!!.setText(currOrder.getSandwichName())
             hummusCheck!!.isChecked = currOrder.getSandwichHummus()

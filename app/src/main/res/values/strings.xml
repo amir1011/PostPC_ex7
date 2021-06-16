@@ -3,4 +3,5 @@
     <string name="place_new_order">Place New Order</string>
     <string name="save_the_order">Save the Order</string>
     <string name="delete_this_order">Delete this order</string>
+    <string name="name">Name</string>
 </resources>

@@ -38,5 +38,5 @@
         android:layout_marginTop="150dp"
         android:layout_marginBottom="105dp"
         android:src="@drawable/giphy"
-        app:layout_constraintBottom_toTopOf="" />
+        app:layout_constraintBottom_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

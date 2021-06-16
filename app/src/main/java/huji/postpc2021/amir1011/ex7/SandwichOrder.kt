@@ -5,12 +5,14 @@ import java.util.*
 enum class Status{
     Waiting,
     InProgress,
-    Ready,
-    Done
+    Ready /*,
+    Done*/
 }
 
 class SandwichOrder(_name: String?, _pickles: Int, _tahini: Boolean, _hummus: Boolean,
                     _comment: String, _id: String?) {
+    constructor() : this(null, 0, false, false, "", null) {
+    }
     private val id: String = _id ?: UUID.randomUUID().toString()
     private var name: String? = _name
     var pickles: Int = _pickles

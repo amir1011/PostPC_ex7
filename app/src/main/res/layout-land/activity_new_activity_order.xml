@@ -137,7 +137,7 @@
         android:text="Order Status"
         android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="pa"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/placeNewOrder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
