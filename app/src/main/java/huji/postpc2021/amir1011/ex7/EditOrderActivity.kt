@@ -1,5 +1,6 @@
 package huji.postpc2021.amir1011.ex7
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -36,6 +37,7 @@ class EditOrderActivity: AppCompatActivity(){
         /* find all UI elements */
 //        val orderButton = findViewById<Button>(R.id.placeNewOrder)
         nameText = findViewById(R.id.name)
+        val perName = findViewById<TextView>(R.id.perName)
         addPickle = findViewById(R.id.increase)
         subtractPickle = findViewById(R.id.decrease)
         subtractPickle = findViewById(R.id.decrease)
@@ -67,6 +69,9 @@ class EditOrderActivity: AppCompatActivity(){
         comment!!.visibility = View.GONE
         updateOrder!!.visibility = View.GONE
         nameText!!.visibility = View.GONE
+        perName.visibility = View.GONE
+
+        perName.text = nameText!!.text
 
         /* define on click listeners */
         addPickle!!.setOnClickListener{
@@ -103,13 +108,25 @@ class EditOrderActivity: AppCompatActivity(){
             }
         })
 
+        delete!!.setOnClickListener{
+            currHolder.getFarebase().collection("orders")
+                    .document(currOrder.getSandwichId()).delete()
+                    .addOnSuccessListener {
+                        currHolder.removeOrderFromSp()
+                        tahiniCheck!!.isChecked = false
+                        hummusCheck!!.isChecked = false
+                        startActivity(Intent(this, NewOrderActivity::class.java))
+                        finish()
+                    }
+        }
+
         updateOrder!!.setOnClickListener{
             //todo go to another activity and update firebase
             currHolder.setCurrOrder(currOrder)
             currHolder.updateOrder(currOrder.getSandwichId())
 
             editOrder!!.visibility = View.VISIBLE
-            delete!!.visibility = View.VISIBLE
+            delete.visibility = View.VISIBLE
             status.visibility = View.VISIBLE
 
             addPickle!!.visibility = View.GONE
@@ -123,13 +140,13 @@ class EditOrderActivity: AppCompatActivity(){
             tahiniCheck!!.visibility = View.GONE
             comment!!.visibility = View.GONE
             updateOrder!!.visibility = View.GONE
-            nameText!!.visibility = View.GONE
+            perName.visibility = View.GONE
         }
 
         editOrder!!.setOnClickListener {
 
             editOrder!!.visibility = View.GONE
-            delete!!.visibility = View.GONE
+            delete.visibility = View.GONE
             status.visibility = View.GONE
             addPickle!!.visibility = View.VISIBLE
             subtractPickle!!.visibility = View.VISIBLE
@@ -142,9 +159,11 @@ class EditOrderActivity: AppCompatActivity(){
             updateOrder!!.visibility = View.VISIBLE
             hummus.visibility = View.VISIBLE
             tahini.visibility = View.VISIBLE
-            nameText!!.visibility = View.VISIBLE
+            perName.visibility = View.VISIBLE
 
-            nameText!!.setText(currOrder.getSandwichName())
+
+//            nameText!!.setText(currOrder.getSandwichName())
+            perName!!.text = currOrder.getSandwichName()
             pickleCounter!!.text = currOrder.getSandwichPickles().toString()
             comment!!.setText(currOrder.getSandwichComment())
             nameText!!.setText(currOrder.getSandwichName())
@@ -158,6 +177,30 @@ class EditOrderActivity: AppCompatActivity(){
 //                    nextActivityIntent.putExtra("order_id", newOrder.getID())
 //                    finish()
 //                }
+        }
+
+        //listener on status changes in order to open a right activity
+        currHolder.getFarebase().collection("orders")
+                .document(currOrder.getSandwichId()).addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                e.printStackTrace()
+                return@addSnapshotListener
+            }
+            if (snapshot != null && snapshot.exists()) {
+                val order = snapshot.toObject(SandwichOrder::class.java)
+                if (order!!.getSandwichStatus() == "in-progress")
+                {
+                    currHolder.getCurrOrder()!!.setSandwichStatus(order.getSandwichStatus())
+                    startActivity(Intent(this, MakingOrderActivity::class.java))
+                    finish()
+                } else if (order.getSandwichStatus() == "ready")
+                {
+                    currHolder.getCurrOrder()!!.setSandwichStatus(order.getSandwichStatus())
+                    startActivity(Intent(this, OrderIsReadyActivity::class.java))
+                    finish()
+                }
+            }
+
         }
     }
 }

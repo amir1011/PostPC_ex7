@@ -3,6 +3,7 @@ package huji.postpc2021.amir1011.ex7
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
@@ -58,12 +59,14 @@ class NewOrderActivity: AppCompatActivity(){
         val pickles = findViewById<TextView>(R.id.pickles)
         val delete = findViewById<Button>(R.id.deleteOrder)
         val status = findViewById<TextView>(R.id.orderStatus)
+        val perName = findViewById<TextView>(R.id.perName)
         comment = findViewById(R.id.comment)
         placeOrder = findViewById(R.id.placeNewOrder)
         saveOrder = findViewById(R.id.saveOrder)
 
 
         nameText!!.visibility = View.GONE
+        perName.visibility = View.GONE
         addPickle!!.visibility = View.GONE
         subtractPickle!!.visibility = View.GONE
         subtractPickle!!.visibility = View.GONE
@@ -105,13 +108,16 @@ class NewOrderActivity: AppCompatActivity(){
                 currOrder!!.setSandwichTahini(false)
         }
 
+
         nameText!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
+
 //                if(currOrder!!.getSandwichName() == null) {
 //                    if(nameText!!.text.toString() == "") nameText!!.setText("Anonymous")
                     currOrder!!.setSandwichName(nameText!!.text.toString())
+                    perName.text = nameText!!.text
 //                    currHolder!!.putNameSp(nameText!!.text.toString())
 //                }
 //                else
@@ -124,6 +130,7 @@ class NewOrderActivity: AppCompatActivity(){
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
                 currOrder!!.setSandwichComment(comment!!.text.toString())
+//                comment!!.inputType = InputType.TYPE_NULL
             }
         })
 
@@ -135,13 +142,13 @@ class NewOrderActivity: AppCompatActivity(){
 //            if(OrderApplication.getInstance()!!.getHolder()!!.getCurrOrderId() == null)
             currHolder!!.putIdSp(currOrder!!.getSandwichId())
             currHolder.setCurrOrder(currOrder!!)
-            currHolder.putNewOrderFirebase()
+            currHolder.updateOrder(currOrder!!.getSandwichId())
             startActivity(Intent(this, EditOrderActivity::class.java))
             finish()
         }
 
         placeOrder!!.setOnClickListener {
-            currOrder = SandwichOrder(/*currHolder!!.getCurrOrderName()*/ null,
+            currOrder = SandwichOrder(currHolder!!.getCurrOrderName() /*null*/,
                                         pickleCounter!!.text.toString().toInt(),
                                         tahiniCheck!!.isChecked,
                                         hummusCheck!!.isChecked,
@@ -149,7 +156,6 @@ class NewOrderActivity: AppCompatActivity(){
                                         null)
 
             placeOrder!!.visibility = View.GONE
-            nameText!!.visibility = View.VISIBLE
             addPickle!!.visibility = View.VISIBLE
             subtractPickle!!.visibility = View.VISIBLE
             subtractPickle!!.visibility = View.VISIBLE
@@ -162,13 +168,10 @@ class NewOrderActivity: AppCompatActivity(){
             hummus.visibility = View.VISIBLE
             tahini.visibility = View.VISIBLE
 
-//            orderButton.text = "Update Order"
-//            MainApp.instance.getDataBase().getOrderStatusLiveData(newOrder.getID()).observe(
-//                this, {
-//                    val nextActivityIntent = Intent(this, OrderInProgressActivity::class.java)
-//                    nextActivityIntent.putExtra("order_id", newOrder.getID())
-//                    finish()
-//                }
+            if(currOrder!!.getSandwichName() == null)
+                nameText!!.visibility = View.VISIBLE
+            else
+                perName.visibility = View.VISIBLE
         }
     }
 }

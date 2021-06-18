@@ -12,7 +12,7 @@
         android:text="Your order is ready! Rachel is in campus with your sandwich!"
         android:textSize="35sp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:textStyle="italic|bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -22,8 +22,8 @@
     <Button
         android:id="@+id/gotIt"
         android:layout_width="353dp"
-        android:layout_height="108dp"
-        android:layout_marginTop="480dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="420dp"
         android:text="Got it"
         android:textSize="35sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -35,8 +35,8 @@
         android:id="@+id/burgerGif"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="105dp"
+        android:layout_marginBottom="145dp"
         android:src="@drawable/giphy"
-        app:layout_constraintBottom_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

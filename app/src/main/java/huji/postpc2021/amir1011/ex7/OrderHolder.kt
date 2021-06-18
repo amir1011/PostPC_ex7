@@ -80,6 +80,15 @@ class OrdersHolder(private var context: Context) {
         return currOrderID
     }
 
+    fun removeOrderFromSp()
+    {
+        val editor: SharedPreferences.Editor = sp.edit()
+//        editor.remove("id")
+//        editor.remove("name")
+//        editor.apply()
+        editor.clear().apply()
+    }
+
     fun putNameSp(str: String)
     {
         val editor: SharedPreferences.Editor = sp.edit()

@@ -26,7 +26,7 @@
         android:id="@+id/explanation"
         android:layout_width="316dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="50dp"
 
         android:inputType="textMultiLine"
         android:text="Rachel is working on your order, she will let you know once it is ready."

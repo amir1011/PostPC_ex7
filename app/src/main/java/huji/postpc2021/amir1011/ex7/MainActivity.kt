@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 
+//        OrderApplication.getInstance()!!.getHolder()!!.removeOrderFromSp()
         val idFromSP: String? = OrderApplication.getInstance()!!.getHolder()!!.getCurrOrderId()
 
         if(idFromSP == null)
@@ -25,17 +26,20 @@ class MainActivity : AppCompatActivity() {
                 .addOnSuccessListener {  document: DocumentSnapshot? ->
                     if (document != null) {
                         currOrder = document.toObject(SandwichOrder::class.java)
+                        currOrder!!.setSandwichId(idFromSP)
                         OrderApplication.getInstance()!!.getHolder()!!.setCurrOrder(currOrder!!)
                     }
                     when (currOrder!!.getSandwichStatus()) {
-                        Status.Waiting -> startActivity(Intent(this, EditOrderActivity::class.java))
-                        Status.InProgress -> startActivity(Intent(this, MakingOrderActivity::class.java))
+                        "in-progress" -> startActivity(Intent(this, EditOrderActivity::class.java))
+                        "ready" -> startActivity(Intent(this, MakingOrderActivity::class.java))
 //                Status.Ready -> startActivity(Intent(this, OrderIsReadyActivity::class.java))
 
 //                Status.Done -> { // Note the block
 //                    print("x is neither 1 nor 2")
                         else -> startActivity(Intent(this, OrderIsReadyActivity::class.java))
+
                 }
+                    this.finish()
 
 
 //            OrderApplication.getInstance()!!.getHolder()!!.getOrderFirebase(idFromSP)
