@@ -30,6 +30,17 @@ class EditOrderActivity: AppCompatActivity(){
         }
     }
 
+    var currentlyRunning = false
+    override fun onStart() {
+        super.onStart()
+        currentlyRunning = true //Store status of Activity somewhere like in shared //preference
+    }
+
+    override fun onStop() {
+        super.onStop()
+        currentlyRunning = false //Store status of Activity somewhere like in shared //preference
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_activity_order)

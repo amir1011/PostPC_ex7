@@ -3,10 +3,12 @@ package huji.postpc2021.amir1011.ex7
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class NewOrderActivity: AppCompatActivity(){
@@ -40,6 +42,17 @@ class NewOrderActivity: AppCompatActivity(){
 //        val itemId: String = order.idString
 //        return "$boolInt#$text#$creationDate#$modData#$itemId"
 //    }
+
+    var currentlyRunning = false
+    override fun onStart() {
+        super.onStart()
+        currentlyRunning = true //Store status of Activity somewhere like in shared //preference
+    }
+
+    override fun onStop() {
+        super.onStop()
+        currentlyRunning = false //Store status of Activity somewhere like in shared //preference
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,13 +96,13 @@ class NewOrderActivity: AppCompatActivity(){
 
         /* define on click listeners */
         addPickle!!.setOnClickListener{
-            val numPickles = getNumPickles(pickleCounter!!.text.toString().toInt()+1)
+            val numPickles = getNumPickles(pickleCounter!!.text.toString().toInt() + 1)
             pickleCounter!!.text = (numPickles).toString()
             currOrder!!.setSandwichPickles(numPickles)
         }
 
         subtractPickle!!.setOnClickListener{
-            val numPickles = getNumPickles(pickleCounter!!.text.toString().toInt()-1)
+            val numPickles = getNumPickles(pickleCounter!!.text.toString().toInt() - 1)
             pickleCounter!!.text = (numPickles).toString()
             currOrder!!.setSandwichPickles(numPickles)
         }
@@ -116,8 +129,8 @@ class NewOrderActivity: AppCompatActivity(){
 
 //                if(currOrder!!.getSandwichName() == null) {
 //                    if(nameText!!.text.toString() == "") nameText!!.setText("Anonymous")
-                    currOrder!!.setSandwichName(nameText!!.text.toString())
-                    perName.text = nameText!!.text
+                currOrder!!.setSandwichName(nameText!!.text.toString())
+                perName.text = nameText!!.text
 //                    currHolder!!.putNameSp(nameText!!.text.toString())
 //                }
 //                else
@@ -148,12 +161,14 @@ class NewOrderActivity: AppCompatActivity(){
         }
 
         placeOrder!!.setOnClickListener {
-            currOrder = SandwichOrder(currHolder!!.getCurrOrderName() /*null*/,
-                                        pickleCounter!!.text.toString().toInt(),
-                                        tahiniCheck!!.isChecked,
-                                        hummusCheck!!.isChecked,
-                              comment?.text?.toString()?:"",
-                                        null)
+            currOrder = SandwichOrder(
+                currHolder!!.getCurrOrderName() /*null*/,
+                pickleCounter!!.text.toString().toInt(),
+                tahiniCheck!!.isChecked,
+                hummusCheck!!.isChecked,
+                comment?.text?.toString() ?: "",
+                null
+            )
 
             placeOrder!!.visibility = View.GONE
             addPickle!!.visibility = View.VISIBLE
