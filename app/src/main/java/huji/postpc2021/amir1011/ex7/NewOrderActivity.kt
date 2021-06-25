@@ -69,7 +69,7 @@ class NewOrderActivity: AppCompatActivity(){
         val hummus = findViewById<TextView>(R.id.hummus)
         tahiniCheck = findViewById(R.id.tahiniCheckBox)
         val tahini = findViewById<TextView>(R.id.tahini)
-        val pickles = findViewById<TextView>(R.id.pickles)
+        val numOfPickles = findViewById<TextView>(R.id.picklesInOrder)
         val delete = findViewById<Button>(R.id.deleteOrder)
         val status = findViewById<TextView>(R.id.orderStatus)
         val perName = findViewById<TextView>(R.id.perName)
@@ -90,7 +90,7 @@ class NewOrderActivity: AppCompatActivity(){
         saveOrder!!.visibility = View.GONE
         hummus.visibility = View.GONE
         tahini.visibility = View.GONE
-        pickles.visibility = View.GONE
+        numOfPickles.visibility = View.GONE
         delete.visibility = View.GONE
         status.visibility = View.GONE
 
@@ -129,8 +129,10 @@ class NewOrderActivity: AppCompatActivity(){
 
 //                if(currOrder!!.getSandwichName() == null) {
 //                    if(nameText!!.text.toString() == "") nameText!!.setText("Anonymous")
+
                 currOrder!!.setSandwichName(nameText!!.text.toString())
                 perName.text = nameText!!.text
+
 //                    currHolder!!.putNameSp(nameText!!.text.toString())
 //                }
 //                else
@@ -153,6 +155,10 @@ class NewOrderActivity: AppCompatActivity(){
             editor.putString("id", *//*fromItemToString(currOrder)*//*currOrder!!.getSandwichId())
             editor.apply()*/
 //            if(OrderApplication.getInstance()!!.getHolder()!!.getCurrOrderId() == null)
+            if(nameText!!.text.toString() == "Name")
+                currOrder!!.setSandwichName("Guest")
+            perName.text = nameText!!.text
+
             currHolder!!.putIdSp(currOrder!!.getSandwichId())
             currHolder.setCurrOrder(currOrder!!)
             currHolder.updateOrder(currOrder!!.getSandwichId())
@@ -175,7 +181,7 @@ class NewOrderActivity: AppCompatActivity(){
             subtractPickle!!.visibility = View.VISIBLE
             subtractPickle!!.visibility = View.VISIBLE
             pickleCounter!!.visibility = View.VISIBLE
-            pickles.visibility = View.VISIBLE
+            numOfPickles!!.visibility = View.VISIBLE
             hummusCheck!!.visibility = View.VISIBLE
             tahiniCheck!!.visibility = View.VISIBLE
             comment!!.visibility = View.VISIBLE

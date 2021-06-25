@@ -62,18 +62,18 @@
         app:layout_constraintVertical_bias="0.77" />
 
     <TextView
-        android:id="@+id/pickles"
+        android:id="@+id/picklesInOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="35sp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638"
-        tools:background="#eee"
-        tools:text="Number Of Pickles" />
+        app:layout_constraintVertical_bias="0.65"
+        tools:background="#4CAF50"
+        android:textColor="#FF9800"
+        android:text="Number Of Pickles" />
 
     <EditText
         android:id="@+id/name"
@@ -104,7 +104,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.202"
-        android:text="" />
+        android:text="Guest" />
 
     <CheckBox
         android:id="@+id/hummusCheckBox"
@@ -126,7 +126,7 @@
         app:layout_constraintBottom_toBottomOf="@id/hummusCheckBox"
         app:layout_constraintLeft_toRightOf="@+id/hummusCheckBox"
         app:layout_constraintTop_toTopOf="@id/hummusCheckBox"
-        tools:background="#eee"
+        tools:background="#FFC107"
         android:text="With Hummus" />
 
     <CheckBox
@@ -192,7 +192,7 @@
         app:layout_constraintLeft_toRightOf="@+id/tahiniCheckBox"
         app:layout_constraintTop_toTopOf="@id/tahiniCheckBox"
         app:layout_constraintVertical_bias="1.0"
-        tools:background="#eee"
+        tools:background="#FFC107"
         android:text="With Tahini" />
 
     <EditText

@@ -57,7 +57,7 @@ class EditOrderActivity: AppCompatActivity(){
         val hummus = findViewById<TextView>(R.id.hummus)
         tahiniCheck = findViewById(R.id.tahiniCheckBox)
         val tahini = findViewById<TextView>(R.id.tahini)
-        val pickles = findViewById<TextView>(R.id.pickles)
+        val pickles = findViewById<TextView>(R.id.picklesInOrder)
         val delete = findViewById<Button>(R.id.deleteOrder)
         val status = findViewById<TextView>(R.id.orderStatus)
         comment = findViewById(R.id.comment)
@@ -65,7 +65,7 @@ class EditOrderActivity: AppCompatActivity(){
         updateOrder = findViewById(R.id.saveOrder)
 
         status!!.text = "Status of the order: Waiting"
-        updateOrder!!.text = "Update this order"
+        updateOrder!!.text = "Update"
         editOrder!!.text = "Edit your order"
 
         addPickle!!.visibility = View.GONE

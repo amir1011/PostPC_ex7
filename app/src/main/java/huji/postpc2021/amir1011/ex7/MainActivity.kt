@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
                         OrderApplication.getInstance()!!.getHolder()!!.setCurrOrder(currOrder!!)
                     }
                     when (currOrder!!.getSandwichStatus()) {
-                        "in-progress" -> startActivity(Intent(this, EditOrderActivity::class.java))
-                        "ready" -> startActivity(Intent(this, MakingOrderActivity::class.java))
+                        "waiting" -> startActivity(Intent(this, EditOrderActivity::class.java))
+                        "in-progress" -> startActivity(Intent(this, MakingOrderActivity::class.java))
 //                Status.Ready -> startActivity(Intent(this, OrderIsReadyActivity::class.java))
 
 //                Status.Done -> { // Note the block
