@@ -28,6 +28,14 @@ class OrdersHolder(private var context: Context) {
         currOrderName = sp.getString("name", null)
     }
 
+    fun spIsEmpty(): Boolean
+    {
+        print(sp.getString("id", null))
+        print(sp.getString("name", null))
+        return sp.getString("id", null) == null &&
+                            sp.getString("name", null) == null
+    }
+
     fun setCurrOrder(order: SandwichOrder)
     {
         currOrder = order
@@ -63,6 +71,18 @@ class OrdersHolder(private var context: Context) {
     {
         fireStore.collection("orders").document(id).set(currOrder!!)
             .addOnSuccessListener {  }
+    }
+
+    fun updateOrderStatus(/*id: String,*/ _status: String)
+    {
+        currOrder!!.status = _status
+        updateOrder(currOrder!!.getSandwichId())
+    }
+
+    fun deleteCurOrder()
+    {
+        fireStore.collection("orders")
+            .document(currOrder!!.getSandwichId()).delete()
     }
 
     fun putIdSp(str: String)
